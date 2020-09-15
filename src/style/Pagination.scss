@@ -1,0 +1,18 @@
+ul.MuiPagination-ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+ul.MuiPagination-ul * {
+  color: white;
+}
+
+.MuiPaginationItem-outlined {
+  border: 1px solid rgba(255, 255, 255, 0.23)!important;
+}
+
+.MuiPaginationItem-page.Mui-selected {
+  background-color: rgba(255, 255, 255, 0.17)!important;
+}

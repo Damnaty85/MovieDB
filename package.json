@@ -1,0 +1,50 @@
+{
+  "name": "movie-information-data-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@react-spring/web": "^9.0.0-rc.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.20.0",
+    "material-ui-image": "^3.2.3",
+    "node-sass": "^4.14.1",
+    "postcss": "^7.0.32",
+    "postcss-cli": "^7.1.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-flip-move": "^3.0.4",
+    "react-lazyload": "^3.0.0",
+    "react-router-dom": "^5.2.0",
+    "react-router-transition": "^2.0.0",
+    "react-scripts": "3.4.3",
+    "react-text-truncate": "^0.16.0",
+    "react-virtualized": "^9.22.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "since 2010"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

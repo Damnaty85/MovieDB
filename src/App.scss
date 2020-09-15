@@ -1,0 +1,16 @@
+.App{
+  background-image: linear-gradient(to right, #051421, #042727);
+  //max-width: 768px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 15px 0;
+  }
+}

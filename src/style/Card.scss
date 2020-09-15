@@ -1,0 +1,89 @@
+
+.films {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  place-items: center;
+  align-items: flex-start;
+  grid-gap: 5px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  overflow: hidden;
+
+  &__card {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    & a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-decoration: none;
+      color: white;
+      position: relative;
+    }
+
+    &:hover .films__information {
+      bottom: 0;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__information {
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    transition: 0.2s;
+    & p {
+      color: black;
+      text-align: left;
+      font-size: 13px;
+    }
+    & h2 {
+      font-size: 18px;
+      letter-spacing: -1px;
+      width: 100%;
+      color: black;
+      text-align: left;
+      text-transform: uppercase;
+    }
+  }
+
+  &__stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+
+    & .MuiSvgIcon-root {
+      margin-right: 3px;
+      margin-left: 10px;
+      font-size: 16px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
