@@ -53,7 +53,7 @@ class ActorDetail extends Component {
             return null;
         }
         return (
-            <div style={{color: 'white', padding: "20px", maxWidth: '768px', width: '100%', margin: '0 auto'}}>
+            <div style={{color: 'white', padding: "20px", width: '100%', margin: '0 auto'}}>
                 <div className="actor-detail__information" style={{minHeight: '380px'}}>
                     <picture className="actors__photo" style={{width:'240px', float: 'left', marginRight: '20px', height: 'auto', marginBottom: '20px'}}>
                         {actor.profile_path === null ?
