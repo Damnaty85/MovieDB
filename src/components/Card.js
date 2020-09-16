@@ -18,7 +18,7 @@ const Card = forwardRef( ({movie}, ref) => {
             }}>
                 <picture className="films__image">
                     {!movie.poster_path ?
-                        <Image aspectRatio={(9/14)} src="./image/nofoto.png" alt={movie.original_title}/> :
+                        <Image aspectRatio={(9/14)} src={`${BASE_URL}${movie.backdrop_path}`} alt={movie.original_title} loading={true}/> :
                         <Image src={`${BASE_URL}${movie.poster_path}`} alt={movie.original_title} aspectRatio={(9/14)}/>
                     }
                 </picture>

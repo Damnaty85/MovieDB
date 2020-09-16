@@ -3,16 +3,20 @@
     margin-left: 15px;
   }
   &__container {
-    overflow-x: scroll;
+    //overflow-x: scroll;
     width: 100%;
     padding-bottom: 40px;
   }
   &__wrap {
     margin-top: 40px;
     display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
   }
   &__item {
-    width: 100%;
+    width: 240px;
+    margin: 0 10px;
     height: auto;
     text-align: center;
     color: white;

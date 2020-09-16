@@ -1,5 +1,5 @@
 {
-  "name": "movie-information-data-react",
+  "name": "MovieDB",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

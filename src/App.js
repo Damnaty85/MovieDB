@@ -33,7 +33,7 @@ function App() {
                 <Header/>
             </div>
             <Navigation setSelectedOption={setSelectedOption}/>
-            <Result selectedOption={selectedOption} movies={movies}/>
+            <Result selectedOption={selectedOption} searchMovies={movies}/>
         </main>
     );
 }

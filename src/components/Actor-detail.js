@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
-import TextTruncate from 'react-text-truncate';
 
 const API_KEY = "4a12fb9b58bf682b744ce39c610d9341";
 const BASE_URL = `https://image.tmdb.org/t/p/original/`;
