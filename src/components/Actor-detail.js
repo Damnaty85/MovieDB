@@ -48,16 +48,22 @@ class ActorDetail extends Component {
         const actor = this.state.actorData;
         const actorImages = this.state.images.profiles;
 
-        if (!actorImages){
+        if (!actorImages) {
             return null;
         }
         return (
             <div style={{color: 'white', padding: "20px", width: '100%', margin: '0 auto'}}>
                 <div className="actor-detail__information" style={{minHeight: '380px'}}>
-                    <picture className="actors__photo" style={{width:'240px', float: 'left', marginRight: '20px', height: 'auto', marginBottom: '20px'}}>
+                    <picture className="actors__photo" style={{
+                        width: '240px',
+                        float: 'left',
+                        marginRight: '20px',
+                        height: 'auto',
+                        marginBottom: '20px'
+                    }}>
                         {actor.profile_path === null ?
-                            <Image src="/src/image/nofoto.png" alt={actor.name} aspectRatio={(9/13)}/> :
-                            <Image src={`${BASE_URL}${actor.profile_path}`} alt={actor.name} aspectRatio={(9/13)}/>
+                            <Image src="/src/image/nofoto.png" alt={actor.name} aspectRatio={(9 / 13)}/> :
+                            <Image src={`${BASE_URL}${actor.profile_path}`} alt={actor.name} aspectRatio={(9 / 13)}/>
                         }
                     </picture>
                     <h2>{actor.name}</h2>
@@ -77,11 +83,13 @@ class ActorDetail extends Component {
                             textDecoration: 'none'
                         }}><KeyboardReturnIcon/>вернуться к списку фильмов</Link>
                 </Button>
-                <div className="actor-detail__gallery" style={{display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))"}}>
+                <div className="actor-detail__gallery"
+                     style={{display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))"}}>
                     {
                         actorImages.map(image => {
-                            return(
-                                <Image key={image.file_path} src={`${BASE_URL}${image.file_path}`} alt={actor.name} aspectRatio={(9/13)}/>
+                            return (
+                                <Image key={image.file_path} src={`${BASE_URL}${image.file_path}`} alt={actor.name}
+                                       aspectRatio={(9 / 13)}/>
                             )
                         })
                     }

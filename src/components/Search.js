@@ -1,7 +1,7 @@
 import React from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import {fade, makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -55,7 +55,7 @@ export default function Search(props) {
         <form onSubmit={props.handleSubmit}>
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
-                    <SearchIcon />
+                    <SearchIcon/>
                 </div>
                 <InputBase
                     placeholder="Поиск…"
@@ -63,7 +63,7 @@ export default function Search(props) {
                         root: classes.inputRoot,
                         input: classes.inputInput,
                     }}
-                    inputProps={{ 'aria-label': 'search' }}
+                    inputProps={{'aria-label': 'search'}}
                     onChange={props.handleChange}
                 />
             </div>

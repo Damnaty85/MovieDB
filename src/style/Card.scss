@@ -1,10 +1,13 @@
-
 .films {
+  display: -ms-grid;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   place-items: center;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
   grid-gap: 5px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0 15px;
   overflow: hidden;
@@ -17,14 +20,50 @@
   &__card {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    //overflow: hidden;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+    &.loading {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
+
     & a {
       width: 100%;
       height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
       text-decoration: none;
       color: white;
@@ -43,7 +82,9 @@
     & img {
       width: 100%;
       height: 100%;
+      -o-object-fit: cover;
       object-fit: cover;
+      -o-object-position: center;
       object-position: center;
     }
   }
@@ -55,18 +96,31 @@
     padding: 10px;
     background-color: #ffffff;
     text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
     transition: 0.2s;
+
     & p {
       color: black;
       text-align: left;
       font-size: 13px;
     }
+
     & h2 {
-      font-size: 18px;
+      font-size: clamp(14px, 2vw, 18px);
       letter-spacing: -1px;
       width: 100%;
       color: black;
@@ -76,8 +130,14 @@
   }
 
   &__stats {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     margin-bottom: 5px;
     margin-top: 5px;
@@ -86,11 +146,51 @@
       margin-right: 3px;
       margin-left: 10px;
       font-size: 16px;
+
       &:first-child {
         margin-left: 0;
       }
     }
   }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.59);
+
+  &__wrapper {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    right: 2%;
+    bottom: 2%;
+    border: 1px solid white;
+    background: black;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 1px;
+    & button{
+      font-size: 11px;
+      margin: 30px 10px 20px auto;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      color: white;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      border: 1px solid white;
+    }
+  }
+}
+
+body.ReactModal__Body--open {
+  overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {

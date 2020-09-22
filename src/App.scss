@@ -1,9 +1,10 @@
-.App{
+.App {
   background-image: linear-gradient(to right, #051421, #042727);
-  //max-width: 768px;
+  max-width: 768px;
   width: 100%;
   margin: 0 auto;
   padding-bottom: 20px;
+
   &__top {
     display: flex;
     align-items: center;

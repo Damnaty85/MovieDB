@@ -4,9 +4,8 @@ import Card from "./Card";
 import axios from "./axios"
 import Pagination from "./Pagination";
 import FlipMove from "react-flip-move";
-import LazyLoad from "react-lazyload"
 
-const Result = ({selectedOption}) => {
+const Result = ({selectedOption, searchMovies, emptyField}) => {
     const [movies, setMovies] = useState([]);
     const [totalResults, setTotalResults] = useState('0');
     const [currentPage, setCurrentPage] = useState('1');
@@ -23,14 +22,6 @@ const Result = ({selectedOption}) => {
         fetchData();
     }, [selectedOption]);
 
-    const LazyLoading = () => {
-        return (
-            <div className="card__loading" style={{color: 'white'}}>
-                <h3>Загрузка...</h3>
-            </div>
-        )
-    };
-
     const nextPage = (pageNumber) => {
 
         async function fetchData() {
@@ -45,19 +36,22 @@ const Result = ({selectedOption}) => {
     };
 
     const numberPages = Math.floor(totalResults / 20);
+
+    let data;
+    const isSearching = emptyField.length === 0 ? data = movies : data = searchMovies;
+
     return (
         <div>
             <FlipMove className="films">
                 {
-                    movies.map((movie) => (
-                        <LazyLoad key={movie.id} height={222} offset={200} resize={true} unmountIfInvisible={true} placeholder={LazyLoading()}>
+                    isSearching &&
+                        data.map((movie) => (
                             <Card movie={movie} key={movie.id}/>
-                        </LazyLoad>
-                    ))
+                        ))
                 }
             </FlipMove>
-            {movies.length >= 20 &&
-            <Pagination pages={numberPages} currentPage={currentPage} nextPage={nextPage}/>
+            {numberPages > 1 &&
+                <Pagination pages={numberPages} currentPage={currentPage} nextPage={nextPage}/>
             }
         </div>
     );

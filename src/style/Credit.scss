@@ -1,37 +1,70 @@
-.actors{
-  & h2{
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+.actors {
+  & h2 {
     margin-left: 15px;
   }
+
   &__container {
     //overflow-x: scroll;
     width: 100%;
     padding-bottom: 40px;
   }
+
   &__wrap {
     margin-top: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
   }
+
   &__item {
-    width: 240px;
+    width: 100%;
     margin: 0 10px;
     height: auto;
     text-align: center;
     color: white;
     text-decoration: none;
   }
+
   &__info {
     width: 100%;
+    height: -webkit-max-content;
+    height: -moz-max-content;
     height: max-content;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
-    & p{
+
+    & h3 {
+      font-size: clamp(13px, 2vw, 20px);
+      margin-top: 20px;
+    }
+
+    & p {
+      font-size: clamp(11px, 2vw, 18px);
       margin-top: 10px;
       margin-bottom: 15px;
     }
   }
+
   &__photo {
     width: 100%;
     height: auto;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { AnimatedSwitch ,  spring} from 'react-router-transition';
+import {BrowserRouter, Route} from 'react-router-dom';
+import {AnimatedSwitch, spring} from 'react-router-transition';
 
 import App from "../App";
 import ActorDetail from "./Actor-detail";
@@ -12,12 +12,14 @@ function mapStyles(styles) {
         transform: `scale(${styles.scale})`,
     };
 }
+
 function bounce(val) {
     return spring(val, {
         stiffness: 330,
         damping: 22,
     });
 }
+
 const bounceTransition = {
     atEnter: {
         opacity: 0,

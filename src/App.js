@@ -23,7 +23,7 @@ function App() {
     };
 
     const handleChange = (evt) => {
-      setSearchMovies(evt.target.value)
+        setSearchMovies(evt.target.value)
     };
 
     return (
@@ -33,7 +33,7 @@ function App() {
                 <Header/>
             </div>
             <Navigation setSelectedOption={setSelectedOption}/>
-            <Result selectedOption={selectedOption} searchMovies={movies}/>
+            <Result selectedOption={selectedOption} searchMovies={movies} emptyField={searchMovies}/>
         </main>
     );
 }
