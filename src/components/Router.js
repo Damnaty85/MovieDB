@@ -5,6 +5,7 @@ import {AnimatedSwitch, spring} from 'react-router-transition';
 import App from "../App";
 import ActorDetail from "./Actor-detail";
 import CardDetail from "./Card-detail";
+import Results from "./Results";
 
 function mapStyles(styles) {
     return {

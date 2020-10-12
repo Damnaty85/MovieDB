@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
+import ActorFilm from "./Actor-film";
 import Image from 'material-ui-image';
 import Typography from '@material-ui/core/Typography';
-import Button from "@material-ui/core/Button";
+import '../style/Actor-detail.scss'
 import {Link} from "react-router-dom";
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import 'swiper/swiper.scss';
 
 const API_KEY = "4a12fb9b58bf682b744ce39c610d9341";
-const BASE_URL = `https://image.tmdb.org/t/p/original/`;
+const BASE_URL = `https://image.tmdb.org/t/p/w500/`;
+const BASE_URL_ORIGINAL = `https://image.tmdb.org/t/p/original/`;
 
 class ActorDetail extends Component {
     constructor(props) {
@@ -44,6 +48,62 @@ class ActorDetail extends Component {
         this.getImage();
     };
 
+    getBigPicture = (evt) => {
+        evt.preventDefault();
+
+        let src = evt.target.parentElement.parentElement.getAttribute('href');
+        const modalImage = document.createElement('div');
+        modalImage.classList.add('actor-detail__overlay');
+        let posTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+        let height = window.screen.availHeight;
+        let width = window.screen.availWidth;
+        modalImage.style = `width: ${width}px;height:${height}px;top:${posTop}px;opacity:0;`;
+        document.querySelector('.actor-detail').insertAdjacentElement('afterend', modalImage);
+        const imageWrap = document.createElement('div');
+        imageWrap.classList.add('actor-detail__image-wrap');
+        modalImage.insertAdjacentElement('afterbegin', imageWrap);
+        imageWrap.style = `height: ${height}px;`;
+        const image = document.createElement('img');
+        image.setAttribute('src', src);
+        imageWrap.insertAdjacentElement('afterbegin', image);
+        document.querySelector('body').style.overflow = 'hidden';
+        modalImage.addEventListener('click', (evt) => {
+            modalImage.remove();
+            document.querySelector('body').style.overflow = 'unset';
+        });
+        setTimeout(() => {
+            modalImage.style = `width: ${width}px;height:${height}px;top:${posTop}px;opacity:1;transition:0.4s;`
+        }, 100);
+
+        let move = null;
+
+        image.addEventListener("touchstart", function (evt) {
+            move = evt;
+        });
+        image.addEventListener("touchmove", function (evt) {
+                let y = evt.touches[0].pageY - move.touches[0].pageY;
+                let x = evt.touches[0].pageX - move.touches[0].pageX;
+                image.style.top = `${y}px`;
+                if (y < -124) {
+                    modalImage.style.opacity = '0';
+                    setTimeout(() => {
+                        modalImage.remove();
+                        document.querySelector('body').style.overflow = 'unset';
+                    }, 200);
+                } else if (y > 115) {
+                    modalImage.style.opacity = '0';
+                    setTimeout(() => {
+                        modalImage.remove();
+                        document.querySelector('body').style.overflow = 'unset';
+                    }, 200);
+                }
+                // image.style.left = `${x}px`;
+        });
+        image.addEventListener("touched", function (evt) {
+            move = null;
+        });
+    };
+
     render() {
         const actor = this.state.actorData;
         const actorImages = this.state.images.profiles;
@@ -52,48 +112,61 @@ class ActorDetail extends Component {
             return null;
         }
         return (
-            <div style={{color: 'white', padding: "20px", width: '100%', margin: '0 auto'}}>
-                <div className="actor-detail__information" style={{minHeight: '380px'}}>
-                    <picture className="actors__photo" style={{
-                        width: '240px',
-                        float: 'left',
-                        marginRight: '20px',
-                        height: 'auto',
-                        marginBottom: '20px'
-                    }}>
+            <div className="actor-detail">
+                <div className="actor-detail__wrap">
+                    <picture className="actor-detail__photo">
                         {actor.profile_path === null ?
                             <Image src="/src/image/nofoto.png" alt={actor.name} aspectRatio={(9 / 13)}/> :
                             <Image src={`${BASE_URL}${actor.profile_path}`} alt={actor.name} aspectRatio={(9 / 13)}/>
                         }
                     </picture>
-                    <h2>{actor.name}</h2>
-                    <Typography style={{margin: '10px 0'}}>Дата рождения: {actor.birthday}</Typography>
-                    <Typography style={{margin: '10px 0'}}>Место рождения: {actor.place_of_birth}</Typography>
-                    <Typography style={{margin: '10px 0'}}>{actor.biography}</Typography>
+                    <div className="actor-detail__info">
+                        <h2>{actor.name}</h2>
+                        <Typography>Дата рождения: {actor.birthday}</Typography>
+                        <Typography>Место рождения: {actor.place_of_birth}</Typography>
+                        <Typography>{actor.biography}</Typography>
+                    </div>
                 </div>
-                <Button variant="outlined" color="default" style={{margin: '20px 0'}}>
-                    <Link
-                        to="/"
-                        rel="noopener noreferrer"
-                        style={{
-                            display: 'grid',
-                            placeItems: 'center',
-                            gridTemplateColumns: '40px 1fr',
-                            color: 'white',
-                            textDecoration: 'none'
-                        }}><KeyboardReturnIcon/>вернуться к списку фильмов</Link>
-                </Button>
-                <div className="actor-detail__gallery"
-                     style={{display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))"}}>
+                <div className="actor-detail__back">
+                    <Link to="/" rel="noopener noreferrer"><KeyboardReturnIcon/></Link>
+                </div>
+                <Swiper
+                    spaceBetween={10}
+                    breakpoints={{
+                        320: {
+                            slidesPerView: 2,
+                        },
+                        540: {
+                            slidesPerView: 3,
+                        },
+                        768: {
+                            slidesPerView: 4,
+                        },
+                        1024: {
+                            slidesPerView: 5,
+                        },
+                        1200: {
+                            slidesPerView: 7,
+                        },
+                        1400: {
+                            slidesPerView: 8,
+                        },
+                    }}
+                >
                     {
                         actorImages.map(image => {
                             return (
-                                <Image key={image.file_path} src={`${BASE_URL}${image.file_path}`} alt={actor.name}
-                                       aspectRatio={(9 / 13)}/>
+                                <SwiperSlide key={image.file_path}>
+                                    <a href={`${BASE_URL_ORIGINAL}${image.file_path}`} onClick={this.getBigPicture}>
+                                        <Image src={`${BASE_URL}${image.file_path}`} alt={actor.name}
+                                               aspectRatio={(9 / 13)}/>
+                                    </a>
+                                </SwiperSlide>
                             )
                         })
                     }
-                </div>
+                </Swiper>
+                <ActorFilm actorId={actor.id}/>
             </div>
         );
     }

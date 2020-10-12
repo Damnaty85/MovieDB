@@ -2,6 +2,7 @@ import React from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import {fade, makeStyles} from '@material-ui/core/styles';
+import ClearIcon from '@material-ui/icons/Clear';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
+        display: 'flex',
+        alignItems: 'center',
+        color: 'white',
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
@@ -29,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    searchClear: {
+        fontSize: '16px',
+        marginRight: '5px',
+        cursor: 'pointer',
     },
     inputRoot: {
         color: 'inherit',
@@ -66,6 +75,7 @@ export default function Search(props) {
                     inputProps={{'aria-label': 'search'}}
                     onChange={props.handleChange}
                 />
+                {/*<ClearIcon className={classes.searchClear}/>*/}
             </div>
         </form>
     );

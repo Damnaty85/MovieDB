@@ -5,8 +5,7 @@ import ListPage from '@material-ui/lab/Pagination';
 const Pagination = (props) => {
 
     return (
-        <ListPage count={props.pages} onChange={(event, val) => props.nextPage(val)} variant="outlined"
-                  shape="rounded"/>
+        <ListPage count={props.pages} onChange={(event, val) => props.nextPage(val)} variant="outlined" shape="rounded"/>
     )
 };
 

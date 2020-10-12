@@ -6,7 +6,7 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/swiper.scss';
 
 const API_KEY = "4a12fb9b58bf682b744ce39c610d9341";
-const BASE_URL = `https://image.tmdb.org/t/p/original/`;
+const BASE_URL = `https://image.tmdb.org/t/p/w500/`;
 
 export default class Credits extends React.Component {
     constructor(props) {
@@ -20,13 +20,14 @@ export default class Credits extends React.Component {
     getData() {
         setTimeout(() => {
             const movieId = this.props.movie;
-            fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}&language=ru-RU`)
+            const url = this.props.serial.seasons ? `tv` : `movie`;
+            fetch(`https://api.themoviedb.org/3/${url}/${movieId}/credits?api_key=${API_KEY}&language=ru-RU`)
                 .then(response => response.json())
                 .then(result => this.setState({
                     credits: result,
                 }))
                 .catch(e => console.log(e));
-        }, 1500)
+        }, 100)
     }
 
     componentDidMount = () => {
@@ -38,13 +39,34 @@ export default class Credits extends React.Component {
         if (!movie.cast) {
             return null;
         }
-        let countItem = window.innerWidth <= 500 ? 3 : 5;
 
         return (
             <section className="actors">
                 <Swiper
                     spaceBetween={10}
-                    slidesPerView={countItem}
+                    breakpoints={{
+                        320: {
+                            slidesPerView: 2,
+                        },
+                        480: {
+                            slidesPerView: 3,
+                        },
+                        640: {
+                            slidesPerView: 4,
+                        },
+                        768: {
+                            slidesPerView: 5,
+                        },
+                        1024: {
+                            slidesPerView: 6,
+                        },
+                        1200: {
+                            slidesPerView: 7,
+                        },
+                        1400: {
+                            slidesPerView: 8,
+                        },
+                    }}
                 >
                     {
                         movie.cast.map(actor => {

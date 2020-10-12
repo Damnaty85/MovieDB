@@ -1,0 +1,105 @@
+.actor-movie {
+  &__card {
+    max-width: 265px;
+    width: 100%;
+    height: auto!important;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border: 1px solid white;
+    & a {
+      width: 100%;
+      height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      text-decoration: none;
+      color: #c7c7c7;
+      position: relative;
+    }
+  }
+  &__image {
+    width: 100%;
+    height: 100%;
+  }
+  &__information {
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background-color: #1b1b1b;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+    & h2 {
+      font-size: clamp(14px, 2vw, 18px);
+      letter-spacing: -1px;
+      width: 100%;
+      color: #c7c7c7;
+      text-align: left;
+      text-transform: uppercase;
+    }
+    & p {
+      color: #c7c7c7;
+      text-align: left;
+      font-size: 13px;
+    }
+  }
+  &__stats {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    & .MuiSvgIcon-root {
+      margin-right: 3px;
+      margin-left: 10px;
+      font-size: 16px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}

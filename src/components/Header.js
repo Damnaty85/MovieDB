@@ -5,7 +5,7 @@ class Header extends Component {
     render() {
         return (
             <header className="header">
-                <div className="header__logo">MovieDB</div>
+                <a className="header__logo" href="/">MovieDB <span>clone</span></a>
             </header>
         );
     }
