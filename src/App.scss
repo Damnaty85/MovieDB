@@ -1,9 +1,19 @@
-.App{
-  background-image: linear-gradient(to right, #051421, #042727);
-  //max-width: 768px;
+h1, h2, h3, p, span, b, a  {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.App {
+  max-width: 1920px;
   width: 100%;
   margin: 0 auto;
-  padding-bottom: 20px;
+  padding: 0 15px 20px;
+  box-sizing: border-box;
+
   &__top {
     display: flex;
     align-items: center;
@@ -11,6 +21,120 @@
     max-width: 100%;
     width: 100%;
     box-sizing: border-box;
-    padding: 20px 15px 0;
+    padding: 20px 0 0;
+  }
+}
+
+.logo {
+  & a {
+    font-size: clamp(20px, 5vw, 30px);
+    color: white;
+    font-weight: 900;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    & span {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 12px;
+      text-align: center;
+      padding-left: 15px;
+    }
+  }
+}
+
+.buttons__wrap {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  z-index: 5;
+  background: #161616;
+}
+
+.buttons__wrap a {
+  color: #949494;
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 1px solid #80808038;
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: 0.2s;
+  background: #00000021;
+  display: flex;
+  align-items: center;
+}
+
+.buttons__wrap a svg {
+  font-size: 19px;
+  margin-right: 5px;
+  margin-top: 4px;
+  pointer-events: none;
+}
+
+.button:hover {
+  box-shadow: 2px 3px 10px #00000054;
+}
+
+::-webkit-scrollbar-button {
+  background-repeat:no-repeat;
+  width:6px;
+  height:0;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #7c7b74;
+  //box-shadow:0px 0px 3px #000 inset;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-image: linear-gradient(to bottom, #051421, #042727);
+  border: 1px solid #7c7b74;
+  //background-image:url('https://yraaa.ru/_pu/24/59610063.png');
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+::-webkit-resizer{
+  background-repeat:no-repeat;
+  width:7px;
+  height:0;
+}
+
+::-webkit-scrollbar{
+  width: 11px;
+}
+
+.movie-trailer__wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  align-items: flex-start;
+  justify-content: center;
+}
+
+@media screen and (max-width: 540px) {
+  .buttons__wrap a svg {
+    font-size: 17px;
+    margin: 0;
+  }
+
+  .buttons__wrap {
+    position: fixed;
+    bottom: 10px;
+    top: unset;
+    left: 10px;
+    right: unset;
+    flex-direction: column-reverse;
+    font-size: 13px;
+  }
+  .buttons__wrap a {
+    width: 100%;
+    justify-content: center;
   }
 }
