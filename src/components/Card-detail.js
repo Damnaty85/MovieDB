@@ -1,19 +1,19 @@
 import React from 'react';
-import {Link} from "react-router-dom";
-import Credits from "./Credits";
+import Cast from "./Cast";
 import Similar from "./Similar";
-// import MovieTrailer from "./Movie-trailer";
 import "../style/Card-detail.scss";
 import StarIcon from '@material-ui/icons/Star';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import AvTimerIcon from '@material-ui/icons/AvTimer';
-import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import Image from "material-ui-image/lib/components/Image/Image";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/swiper.scss';
+import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {Link} from "react-router-dom";
 
 const API_KEY = "4a12fb9b58bf682b744ce39c610d9341";
-const BASE_IMG_URL = `https://image.tmdb.org/t/p/original/`;
+const BASE_IMG_URL = `https://image.tmdb.org/t/p/w500/`;
+const BASE_BG_IMG_URL = `https://image.tmdb.org/t/p/original/`;
 
 const MOVIE_BASE_URL = `https://api.themoviedb.org/3/movie/`;
 const TV_BASE_URL = `https://api.themoviedb.org/3/tv/`;
@@ -24,20 +24,6 @@ class CardDetail extends React.Component {
         isFetching: false,
     };
 
-    componentDidMount = async () => {
-        const movieId = this.props.location.state.movie;
-        const serialName = this.props.location.state.serial;
-        const url = !serialName ? MOVIE_BASE_URL : TV_BASE_URL;
-        this.setState({...this.state, isFetching: true});
-        await fetch(`${url}${movieId}?api_key=${API_KEY}&language=ru-RU`)
-            .then(response => response.json())
-            .then(result => this.setState({
-                movieDetail: result,
-                isFetching: false
-            }))
-            .catch(e => console.log(e));
-    };
-
     render() {
         const movie = this.state.movieDetail;
         if (!movie.poster_path) {
@@ -45,7 +31,7 @@ class CardDetail extends React.Component {
         }
         return (
             <div className="container">
-                <section className="card-detail" style={{backgroundImage: `url(${BASE_IMG_URL}${movie.backdrop_path})`}}>
+                <section className="card-detail" style={{backgroundImage: `url(${BASE_BG_IMG_URL}${movie.backdrop_path})`}}>
                     <span className="card-detail__gradient">
                         <svg xmlns="http://www.w3.org/2000/svg" width="200px" height="200px">
                             <defs>
@@ -60,11 +46,22 @@ class CardDetail extends React.Component {
                         </svg>
                     </span>
                     <div className="card-detail__wrapper">
-                       <div className="card-detail__top">
-                           <img src={`${BASE_IMG_URL}${movie.poster_path}`} alt=""/>
+                        <div className="buttons__wrap">
+                            <Link to="#" onClick={this.clickingEffect}><ArrowBackIcon/>Назад</Link>
+                            <Link to="/" onClick={this.clickingEffect}><KeyboardReturnIcon/>Нa главную</Link>
+                        </div>
+                        <div className="card-detail__top">
+                            <picture className="card-detail__image">
+                               {movie.poster_path &&
+                                   <Image src={`${BASE_IMG_URL}${movie.poster_path}`} alt={movie.original_title} aspectRatio={(9 / 14)}/>
+                               }
+                            </picture>
                            <div className="card-detail__information">
                                <h1>{ movie.title ? movie.title : movie.name }</h1>
                                <h4>{movie.original_title || movie.original_name}</h4>
+                               { movie.vote_average || movie.vote_count
+                                   ? <p className="card-detail__stats"><StarIcon/>{movie.vote_average} из 10 / <ThumbUpIcon/>{movie.vote_count}</p>
+                                   : ''}
                                <p><b>Дата релиза:</b> {movie.release_date || movie.first_air_date}</p>
                                {
                                    movie.production_countries ? (
@@ -77,13 +74,10 @@ class CardDetail extends React.Component {
                                        </p>
                                    ) : ('')
                                }
-                               { movie.vote_average || movie.vote_count
-                                   ? <p className="card-detail__stats"><StarIcon/>{movie.vote_average} из 10 / <ThumbUpIcon/>{movie.vote_count}</p>
-                                   : ''}
                                {movie.tagline && <p><b>Слоган:</b> {movie.tagline}</p>}
                                {movie.budget ? <p><b>Бюджет:</b> {movie.budget}$</p> : ""}
                                {movie.revenue ? <p><b>Доход:</b> {movie.revenue}$</p> : ""}
-                               {movie.runtime ? <p className="card-detail__stats"><AvTimerIcon/> {movie.runtime} мин.</p> : ''}
+                               {movie.runtime ? <p><b>Продолжительность: </b> {movie.runtime} мин.</p> : ''}
                                {movie.episode_run_time &&
                                    <p>
                                        <b>Длина эпизода: </b>
@@ -107,7 +101,8 @@ class CardDetail extends React.Component {
                                <p>{`Последний ${movie.last_episode_to_air.episode_number} эпизод ${movie.last_episode_to_air.season_number} сезона вышел ${movie.last_episode_to_air.air_date}`}</p>}
                                {movie.next_episode_to_air &&
                                <p>{`Следующий ${movie.next_episode_to_air.episode_number} эпизод ${movie.next_episode_to_air.season_number} сезона выйдет ${movie.next_episode_to_air.air_date}`}</p>}
-                               <p>{movie.in_production ? `` : `Сериал завершился`}</p>
+                               {movie.in_production  &&
+                               <p>Сериал завершился</p>}
                                <div className="card-detail__genre">
                                    {
                                        movie.genres.map(genre => {
@@ -125,7 +120,7 @@ class CardDetail extends React.Component {
                                        }).join(`, `)
                                    }
                                </div>
-                               {movie.homepage && <p><b>Посетить страницу фильма:</b><a href={movie.homepage} target="_blank">{movie.title || movie.name}</a>
+                               {movie.homepage && <p><b>Посетить страницу фильма:</b><a href={movie.homepage} target="_blank" rel="noopener noreferrer">{movie.title || movie.name}</a>
                                </p>}
                            </div>
                        </div>
@@ -166,7 +161,6 @@ class CardDetail extends React.Component {
                                                     <h4>{season.name || season.original_name}</h4>
                                                     {season.air_date && <p><b>Дата выхода:</b> {season.air_date}</p>}
                                                     {season.episode_count && <p><b>Количество эпизодов:</b> {season.episode_count}</p>}
-                                                    {/*{season.overview && <p><b>Описание сезона:</b> {season.overview}</p>}*/}
                                                 </div>
                                             </SwiperSlide>
                                         )
@@ -176,19 +170,54 @@ class CardDetail extends React.Component {
                             }
                         </div>
                     </div>
-                    {/*<div className="card-detail__back">*/}
-                    {/*    <Link to="/" rel="noopener noreferrer"><KeyboardReturnIcon/></Link>*/}
-                    {/*</div>*/}
                 </section>
                 {/*<MovieTrailer movie={this.state.movieDetail.id}/>*/}
-                {/*<Posters movie={this.state.movieDetail.id}/>*/}
-                <Credits movie={this.state.movieDetail.id} serial={this.state.movieDetail}/>
+                <Cast movie={this.state.movieDetail.id} serial={this.state.movieDetail}/>
+
                 {!this.state.movieDetail.seasons &&
                     <Similar movie={this.state.movieDetail.id}/>
                 }
             </div>
         );
     }
+
+    clickingEffect = (evt) => {
+        evt.preventDefault();
+        let linkTo = evt.currentTarget.getAttribute('href');
+        let bounds = evt.currentTarget.getBoundingClientRect();
+        let xAxis = evt.clientX - bounds.left;
+        let yAxis = evt.clientY - bounds.top;
+
+        evt.target.style.overflow = `hidden`;
+        const hover = document.createElement('span');
+        hover.style = `height:5px;width:5px;transition:0.3s;background:rgba(255, 255, 255, 0.2);position:absolute;top:${yAxis-2.5}px;left:${xAxis-2.5}px;transition:0.9s;border-radius:100%;`;
+        evt.target.insertAdjacentElement('afterbegin', hover);
+        setTimeout(() => {
+            hover.style = `height:300px;width:300px;transition:0.3s;background:rgba(255, 255, 255, 0.2);position:absolute;top:${yAxis-150}px;left:${xAxis-150}px;transition:0.9s;border-radius:100%;`;
+            setTimeout(() => {
+                hover.style.opacity = '0';
+                hover.style.pointerEvents = `none`;
+                setTimeout(() => {
+                    hover.remove();
+                    linkTo === window.location.pathname ? window.history.back() : document.location.href = linkTo;
+                }, 400)
+            }, 200)
+        }, 50)
+    };
+
+    componentDidMount = async () => {
+        const movieId = this.props.location.state.movie;
+        const serialName = this.props.location.state.serial;
+        const url = !serialName ? MOVIE_BASE_URL : TV_BASE_URL;
+        this.setState({...this.state, isFetching: true});
+        await fetch(`${url}${movieId}?api_key=${API_KEY}&language=ru-RU`)
+            .then(response => response.json())
+            .then(result => this.setState({
+                movieDetail: result,
+                isFetching: false
+            }))
+            .catch(e => console.log(e));
+    };
 }
 
 

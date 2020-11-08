@@ -1,14 +1,4 @@
-/*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v7.0.29,
-* Autoprefixer: v9.7.6
-* Browsers: last 4 version
-*/
-
-.actors {
-  & h2 {
-    margin-left: 15px;
-  }
+.cast {
 
   &__container {
     //overflow-x: scroll;

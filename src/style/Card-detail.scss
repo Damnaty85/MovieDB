@@ -1,10 +1,11 @@
 .container {
-  //max-width: 768px;
+  max-width: 1920px;
   width: 100%;
   margin: 0 auto;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: white;
+  background-color: black;
 }
 
 .card-detail {
@@ -52,6 +53,7 @@
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    padding: 20px 20px 0;
   }
 
   &__top {
@@ -68,22 +70,24 @@
     width: 100%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0 15px;
     color: white;
+  }
 
-    & img {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      justify-content: center;
-      width: 230px;
-      margin-right: 10px;
-      object-fit: contain;
+  &__image {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 300px;
+    margin-right: 10px;
+    object-fit: contain;
+    & * {
+      width: 100%;
     }
   }
 
@@ -92,7 +96,6 @@
     width: 100%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0 15px;
     margin-top: 20px;
     margin-bottom: 30px;
   }
@@ -198,13 +201,13 @@
       padding: 0 5px;
       align-items: center;
     }
-    &__wrapper{
-      & img {
-        max-width: 230px;
-        width: 100%;
-        height: auto;
-      }
-    }
+    //&__wrapper{
+    //  & img {
+    //    max-width: 230px;
+    //    width: 100%;
+    //    height: auto;
+    //  }
+    //}
     &__information {
       font-size: 12px;
     }
@@ -223,10 +226,17 @@
 }
 
 @media screen and (max-width: 425px) {
-  .card-detail__wrapper img {
+  //.card-detail__wrapper img {
+  //  float: right;
+  //  max-width: 170px;
+  //  margin-top: 5px;
+  //  margin-left: 5px;
+  //  margin-bottom: 5px;
+  //  margin-right: 0;
+  //}
+  .card-detail__image {
     float: right;
-    max-width: 170px;
-    margin-top: 5px;
+    width: 150px;
     margin-left: 5px;
     margin-bottom: 5px;
     margin-right: 0;

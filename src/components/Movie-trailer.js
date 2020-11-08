@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import YouTube from 'react-youtube';
+import '../App.scss'
 
 const API_KEY = "4a12fb9b58bf682b744ce39c610d9341";
 const BASE_URL = `https://api.themoviedb.org/3/movie/`;

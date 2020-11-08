@@ -2,7 +2,29 @@ import React from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import {fade, makeStyles} from '@material-ui/core/styles';
-import ClearIcon from '@material-ui/icons/Clear';
+
+export default function Search(props) {
+    const classes = useStyles();
+
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                    <SearchIcon/>
+                </div>
+                <InputBase
+                    placeholder="Поиск…"
+                    classes={{
+                        root: classes.inputRoot,
+                        input: classes.inputInput,
+                    }}
+                    inputProps={{'aria-label': 'search'}}
+                    onChange={props.handleChange}
+                />
+            </div>
+        </form>
+    );
+}
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,27 +78,3 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-
-export default function Search(props) {
-    const classes = useStyles();
-
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                    <SearchIcon/>
-                </div>
-                <InputBase
-                    placeholder="Поиск…"
-                    classes={{
-                        root: classes.inputRoot,
-                        input: classes.inputInput,
-                    }}
-                    inputProps={{'aria-label': 'search'}}
-                    onChange={props.handleChange}
-                />
-                {/*<ClearIcon className={classes.searchClear}/>*/}
-            </div>
-        </form>
-    );
-}

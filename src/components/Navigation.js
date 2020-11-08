@@ -9,11 +9,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
 const useStyles = makeStyles((theme) => ({
+    formWrapper: {
+        display: 'flex',
+        alignItems: 'center',
+        margin: '20px 0'
+    },
     formControl: {
-        margin: theme.spacing(1),
         maxWidth: 300,
         width: '100%',
-        marginLeft: 15,
+        marginRight: '20px'
     },
     inputLabel: {
         color: 'white',
@@ -41,15 +45,10 @@ const Navigation = ({setSelectedOption}) => {
     };
 
     return (
-        <div style={{display: "flex"}}>
+        <div className={classes.formWrapper}>
             <FormControl className={classes.formControl}>
                 <InputLabel className={classes.inputLabel}>Фильмы</InputLabel>
-                <Select
-                    className={classes.select}
-                    value={genreMovie}
-                    onChange={handleChangeMovie}
-                    autoWidth
-                >
+                <Select className={classes.select} value={genreMovie} onChange={handleChangeMovie} autoWidth>
                     <MenuItem value={1} onClick={() => setSelectedOption(requests.movie.fetchUpComing)}>Новинки</MenuItem>
                     <MenuItem value={2} onClick={() => setSelectedOption(requests.movie.fetchActionMovie)}>Боевики</MenuItem>
                     <MenuItem value={2} onClick={() => setSelectedOption(requests.movie.fetchAdventureMovie)}>Приключения</MenuItem>
@@ -70,6 +69,7 @@ const Navigation = ({setSelectedOption}) => {
                 </Select>
                 <FormHelperText className={classes.helperText}>Выберете жанр фильмов, который вам интересен</FormHelperText>
             </FormControl>
+
             <FormControl className={classes.formControl}>
                 <InputLabel className={classes.inputLabel}>Сериалы</InputLabel>
                 <Select

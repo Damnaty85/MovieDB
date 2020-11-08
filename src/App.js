@@ -26,12 +26,10 @@ function App() {
             setTotalResults(request.data.total_results);
             return request;
         }
-
         fetchData();
     }, [selectedOption]);
 
-
-    const handleSubmit = async (evt, pageNumber) => {
+    const handleSearchSubmit = async (evt, pageNumber) => {
         evt.preventDefault();
         await fetch(`${BASE_SEARCH_URL}?api_key=${API_KEY}&language=ru-RU&query=${search}&page=${pageNumber}`)
             .then(data => data.json())
@@ -59,19 +57,19 @@ function App() {
         setSearchMovies(evt.target.value)
     };
 
-    const numberPages = Math.floor(totalResults / 20);
+    const totalPages = Math.floor(totalResults / 20);
 
     return (
         <main className="App">
             <div className="App__top">
-                <Search handleSubmit={handleSubmit} handleChange={handleChange}/>
+                <Search handleSubmit={handleSearchSubmit} handleChange={handleChange}/>
                 <Header/>
             </div>
             <Navigation setSelectedOption={setSelectedOption}/>
             <Result movies={movies} searchResult={searchResult} emptyField={search}/>
             {
-                numberPages > 1 &&
-                <Pagination pages={numberPages} currentPage={currentPage} nextPage={nextPage}/>
+                totalPages > 1 &&
+                <Pagination totalPages={totalPages} currentPage={currentPage} nextPage={nextPage}/>
             }
         </main>
     );

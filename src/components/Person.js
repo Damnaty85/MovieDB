@@ -1,7 +1,6 @@
 import React, {forwardRef} from 'react';
 import Image from "material-ui-image/lib/components/Image/Image";
 import '../style/Person.scss'
-import PersonIcon from '@material-ui/icons/Person';
 import {Link} from "react-router-dom";
 
 const BASE_URL = `https://image.tmdb.org/t/p/original/`;
