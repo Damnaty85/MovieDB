@@ -4,7 +4,7 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import StarIcon from '@material-ui/icons/Star';
 import {Link} from "react-router-dom";
 import {Swiper, SwiperSlide} from 'swiper/react';
-import 'swiper/swiper.scss';
+import 'swiper/swiper-bundle.min.css';
 
 const BASE_URL = `https://image.tmdb.org/t/p/w500/`;
 const API_KEY = "4a12fb9b58bf682b744ce39c610d9341";

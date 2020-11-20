@@ -2,7 +2,6 @@
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: white;
   background-color: black;
@@ -40,48 +39,25 @@
   }
 
   &__wrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
     padding: 20px 20px 0;
   }
 
   &__top {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
     align-items: flex-start;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
     justify-content: flex-start;
-    //max-width: 768px;
     width: 100%;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     color: white;
   }
 
   &__image {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
     width: 300px;
     margin-right: 10px;
@@ -92,9 +68,7 @@
   }
 
   &__bottom {
-    //max-width: 768px;
     width: 100%;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -122,6 +96,9 @@
 
   & p {
     margin: 5px 0;
+    &:last-child {
+      margin-top: 30px;
+    }
     & b {
       margin-right: 5px;
     }
@@ -133,14 +110,8 @@
   &__stats {
     margin-top: 10px;
     font-size: 14px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
     justify-content: flex-start;
 
     & svg {
@@ -153,28 +124,15 @@
   }
 
   &__genre {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
     justify-content: flex-start;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 
     & span {
       border: 1px solid white;
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
       align-items: center;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
       justify-content: center;
       padding: 3px 10px;
       border-radius: 15px;
@@ -201,13 +159,6 @@
       padding: 0 5px;
       align-items: center;
     }
-    //&__wrapper{
-    //  & img {
-    //    max-width: 230px;
-    //    width: 100%;
-    //    height: auto;
-    //  }
-    //}
     &__information {
       font-size: 12px;
     }
@@ -226,29 +177,24 @@
 }
 
 @media screen and (max-width: 425px) {
-  //.card-detail__wrapper img {
-  //  float: right;
-  //  max-width: 170px;
-  //  margin-top: 5px;
-  //  margin-left: 5px;
-  //  margin-bottom: 5px;
-  //  margin-right: 0;
-  //}
-  .card-detail__image {
-    float: right;
-    width: 150px;
-    margin-left: 5px;
-    margin-bottom: 5px;
-    margin-right: 0;
-  }
-
-  .card-detail__top {
-    display: unset;
-  }
-  .card-detail__genre span {
-    margin: 3px 0;
-  }
-  .card-detail__bottom {
-    padding: 0 7px;
+  .card-detail {
+    &__image {
+      float: right;
+      width: 150px;
+      margin-left: 5px;
+      margin-bottom: 5px;
+      margin-right: 0;
+    }
+    &__top {
+      display: unset;
+    }
+    &__genre {
+      & span {
+        margin: 3px 0;
+      }
+    }
+    &__bottom {
+      padding: 0 7px;
+    }
   }
 }

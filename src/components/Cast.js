@@ -3,10 +3,11 @@ import "../style/Credit.scss"
 import Image from 'material-ui-image';
 import {Link} from "react-router-dom";
 import {Swiper, SwiperSlide} from 'swiper/react';
-import 'swiper/swiper.scss';
+import 'swiper/swiper-bundle.min.css';
 
 const API_KEY = "4a12fb9b58bf682b744ce39c610d9341";
 const BASE_URL = `https://image.tmdb.org/t/p/w500/`;
+const NO_PHOTO_URL = `https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png`;
 
 export default class Cast extends React.Component {
     constructor(props) {
@@ -64,11 +65,9 @@ export default class Cast extends React.Component {
                                     }} className="cast__item" key={actor.id}>
                                         <picture className="cast__photo"
                                                  style={{width: '100%', float: 'left', marginRight: '20px'}}>
-                                            {actor.profile_path === null ?
-                                                <Image src="/src/image/nofoto.png" alt={actor.name}
-                                                       aspectRatio={(9 / 13)}/> :
-                                                <Image src={`${BASE_URL}${actor.profile_path}`} alt={actor.name}
-                                                       aspectRatio={(9 / 13)}/>
+                                            {actor.profile_path ?
+                                                <Image src={`${BASE_URL}${actor.profile_path}`} alt={actor.name} aspectRatio={(9 / 13)}/> :
+                                                <Image src={`${NO_PHOTO_URL}`} alt={actor.name} aspectRatio={(9 / 13)}/>
                                             }
                                         </picture>
                                         <div className="cast__info">
