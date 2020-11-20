@@ -1,36 +1,19 @@
 .films {
-  display: -ms-grid;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   place-items: center;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
   align-items: flex-start;
   grid-gap: 5px;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  //overflow: hidden;
   justify-items: flex-start;
 
   &__card {
-    max-width: 265px;
     width: 100%;
     height: 100%;
-    //overflow: hidden;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
     align-items: flex-start;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
     border: 2px solid white;
     text-decoration: none;
@@ -41,14 +24,8 @@
     }
 
     &.loading {
-      display: -webkit-box;
-      display: -ms-flexbox;
       display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
       align-items: center;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
       justify-content: center;
     }
   }
@@ -58,12 +35,7 @@
     height: 100%;
 
     & img {
-      width: 100%;
-      height: 100%;
-      -o-object-fit: cover;
       object-fit: cover;
-      -o-object-position: center;
-      object-position: center;
     }
     & svg {
       bottom: -1px;
@@ -79,21 +51,10 @@
     padding: 10px;
     background-color: #1b1b1b;
     text-align: center;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
     align-items: flex-start;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-transition: 0.2s;
-    -o-transition: 0.2s;
     transition: 0.2s;
 
     & p {
@@ -128,14 +89,8 @@
   }
 
   &__stats {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
     margin-bottom: 5px;
     margin-top: 5px;
@@ -153,41 +108,6 @@
   }
 }
 
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.59);
-
-  &__wrapper {
-    position: absolute;
-    top: 2%;
-    left: 2%;
-    right: 2%;
-    bottom: 2%;
-    border: 1px solid white;
-    background: black;
-    overflow: auto;
-    border-radius: 4px;
-    outline: none;
-    padding: 1px;
-    & button{
-      font-size: 11px;
-      margin: 30px 10px 20px auto;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      color: white;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      border: 1px solid white;
-    }
-  }
-}
-
 body.ReactModal__Body--open {
   overflow: hidden;
 }
@@ -195,9 +115,11 @@ body.ReactModal__Body--open {
 @media screen and (max-width: 1400px) {
   .films {
     grid-template-columns: repeat(6, 1fr);
-  }
-  .films__information h2 {
-    font-size: 16px;
+    &__information {
+      & h2 {
+        font-size: 16px;
+      }
+    }
   }
 }
 @media screen and (max-width: 1200px) {
@@ -213,12 +135,14 @@ body.ReactModal__Body--open {
 @media screen and (max-width: 768px) {
   .films {
     grid-template-columns: repeat(3, 1fr);
-  }
-  .films__information h2 {
-    font-size: 13px;
-  }
-  .films__information p {
-    font-size: 11px;
+    &__information {
+      & h2 {
+        font-size: 13px;
+      }
+      & p {
+        font-size: 11px;
+      }
+    }
   }
 }
 @media screen and (max-width: 480px) {

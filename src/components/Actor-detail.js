@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Swiper, SwiperSlide} from 'swiper/react';
-import 'swiper/swiper.scss';
+import 'swiper/swiper-bundle.min.css';
 
 const API_KEY = "4a12fb9b58bf682b744ce39c610d9341";
 const BASE_URL = `https://image.tmdb.org/t/p/w500/`;
@@ -33,8 +33,7 @@ class ActorDetail extends Component {
             <div className="actor-detail">
                 <div className="actor-detail__wrap">
                     <picture className="actor-detail__photo">
-                        {actor.profile_path === null ?
-                            <Image src="/src/image/nofoto.png" alt={actor.name} aspectRatio={(9 / 13)}/> :
+                        {actor.profile_path &&
                             <Image src={`${BASE_URL}${actor.profile_path}`} alt={actor.name} aspectRatio={(9 / 13)}/>
                         }
                     </picture>
@@ -81,8 +80,7 @@ class ActorDetail extends Component {
                                 return (
                                     <SwiperSlide key={image.file_path}>
                                         <a href={`${BASE_URL_ORIGINAL}${image.file_path}`} onClick={this.getBigPicture}>
-                                            <Image src={`${BASE_URL}${image.file_path}`} alt={actor.name}
-                                                   aspectRatio={(9 / 13)}/>
+                                            <Image src={`${BASE_URL}${image.file_path}`} alt={actor.name} aspectRatio={(9 / 13)}/>
                                         </a>
                                     </SwiperSlide>
                                 )
@@ -210,6 +208,30 @@ class ActorDetail extends Component {
             move = null;
         });
     };
+
+    // hoverCard = (evt) => {
+    //     let emptyBox = document.createElement('div');
+    //     emptyBox.classList.add('box-empty');
+    //
+    //     const height = evt.target.offsetHeight;
+    //     const width = evt.target.offsetWidth;
+    //
+    //     emptyBox.style = `width:${width}px;height:${height}px;position:absolute;`;
+    //
+    //     evt.currentTarget.insertAdjacentElement('beforebegin', emptyBox);
+    //
+    //     const x = emptyBox.getBoundingClientRect().left;
+    //     const y = emptyBox.getBoundingClientRect().top;
+    //
+    //     let posTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+    //
+    //     evt.currentTarget.style = `position:fixed;top:${y + posTop}px;left:${x}px;height:auto;transition:0.3s;z-index:1;`;
+    // };
+    //
+    // removeHover = (evt) => {
+    //     document.querySelector('.box-empty').remove();
+    //     evt.currentTarget.style = `position:relative;transition:0.3s`;
+    // };
 }
 
 export default ActorDetail;

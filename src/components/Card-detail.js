@@ -6,7 +6,7 @@ import StarIcon from '@material-ui/icons/Star';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import Image from "material-ui-image/lib/components/Image/Image";
 import {Swiper, SwiperSlide} from 'swiper/react';
-import 'swiper/swiper.scss';
+import 'swiper/swiper-bundle.min.css';
 import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Link} from "react-router-dom";
@@ -122,12 +122,12 @@ class CardDetail extends React.Component {
                                </div>
                                {movie.homepage && <p><b>Посетить страницу фильма:</b><a href={movie.homepage} target="_blank" rel="noopener noreferrer">{movie.title || movie.name}</a>
                                </p>}
+                               <p>
+                                   <b>Описание:</b> {!movie.overview ? `Описание для этого фильма отсутсвует` : movie.overview}
+                               </p>
                            </div>
                        </div>
                         <div className="card-detail__bottom">
-                            <p>
-                                <b>Описание:</b> {!movie.overview ? `Описание для этого фильма отсутсвует` : movie.overview}
-                            </p>
                             {movie.seasons &&
                             <Swiper
                                 spaceBetween={10}
@@ -181,6 +181,20 @@ class CardDetail extends React.Component {
         );
     }
 
+    componentDidMount = async () => {
+        const movieId = this.props.location.state.movie;
+        const serialName = this.props.location.state.serial;
+        const url = !serialName ? MOVIE_BASE_URL : TV_BASE_URL;
+        this.setState({...this.state, isFetching: true});
+        await fetch(`${url}${movieId}?api_key=${API_KEY}&language=ru-RU`)
+            .then(response => response.json())
+            .then(result => this.setState({
+                movieDetail: result,
+                isFetching: false
+            }))
+            .catch(e => console.log(e));
+    };
+
     clickingEffect = (evt) => {
         evt.preventDefault();
         let linkTo = evt.currentTarget.getAttribute('href');
@@ -205,19 +219,6 @@ class CardDetail extends React.Component {
         }, 50)
     };
 
-    componentDidMount = async () => {
-        const movieId = this.props.location.state.movie;
-        const serialName = this.props.location.state.serial;
-        const url = !serialName ? MOVIE_BASE_URL : TV_BASE_URL;
-        this.setState({...this.state, isFetching: true});
-        await fetch(`${url}${movieId}?api_key=${API_KEY}&language=ru-RU`)
-            .then(response => response.json())
-            .then(result => this.setState({
-                movieDetail: result,
-                isFetching: false
-            }))
-            .catch(e => console.log(e));
-    };
 }
 
 

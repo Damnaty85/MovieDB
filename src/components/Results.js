@@ -1,9 +1,6 @@
 import React from 'react';
-// import React, {useState, useEffect} from 'react';
 import "../style/Card.scss"
 import Card from "./Card";
-// import axios from "./axios"
-// import Pagination from "./Pagination";
 import FlipMove from "react-flip-move";
 import Person from "./Person";
 

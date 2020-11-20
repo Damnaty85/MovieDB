@@ -55,30 +55,4 @@ const Card = forwardRef(({movie}, ref) => {
     );
 });
 
-// const hoverCard = (evt) => {
-//     let emptyBox = document.createElement('div');
-//     emptyBox.classList.add('box-empty');
-//
-//     const height = evt.currentTarget.offsetHeight;
-//     const width = evt.currentTarget.offsetWidth;
-//
-//     emptyBox.style = `width:${width}px;height:${height}px;`;
-//
-//     evt.currentTarget.insertAdjacentElement('beforebegin', emptyBox);
-//
-//     const x = emptyBox.getBoundingClientRect().left;
-//     const y = emptyBox.getBoundingClientRect().top;
-//
-//     let posTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-//
-//     evt.currentTarget.style = `position:fixed;top:${y + posTop}px;left:${x}px;height:auto;transition:0.3s;z-index:1;transform: scale(1.1);`;
-//
-//
-// };
-//
-// const removeHover = (evt) => {
-//     document.querySelector('.box-empty').remove();
-//     evt.currentTarget.style = `position:relative;transition:0.3s`;
-// };
-
 export default Card;
